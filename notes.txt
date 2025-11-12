@@ -1,0 +1,11 @@
+Reqs for physics
+    gravity constant
+
+properties of a rocket:
+    mass
+    fuel
+    thrust(force of engine)
+    position
+    velocity
+    acceleration
+    
