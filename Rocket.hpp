@@ -4,4 +4,4 @@ struct Rocket{
     double massI;
     double massF;
 
-}
+};
