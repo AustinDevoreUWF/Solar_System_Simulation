@@ -2,12 +2,13 @@
 #include "vector2D.hpp"
 #include <vector>
 class Physics{
-    private:
-        const float G = 1000.0f;
+    private://standered gravitational constant 6.674e-11
+            //5e-8 gave close
         double time=0.0;
         Vector v;
-        vector<Ball*> ball;
+        vector<Ball*> ball;//incase many balls
     public:
+        const double G = 5e-8;
 
         void addBall(Ball *b){
             ball.push_back(b);
@@ -15,13 +16,14 @@ class Physics{
 
         Vector forceG(Ball *a, Ball *b){
             Vector dir = b->pos - a->pos;
-            float distance = dir.mag();
+            double distance = dir.mag();
             if(distance ==0) return Vector(0,0);
-            float magnitude = G*(a->mass *b->mass)/(distance*distance);
+            double magnitude = G*(a->mass *b->mass)/(distance*distance);
             return dir.norm() * magnitude; //give the full force vector, direction and mag
         };
 
-        void step(double dt){
+
+    void step(double dt){
             for(auto b:ball){
                 b->force = Vector(0,0);
             }
@@ -44,5 +46,7 @@ class Physics{
                 b->pos +=b->vel *dt;
             }
             time=time+dt;
-            }
+            };
         };
+
+//Values for initial velocity
