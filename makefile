@@ -4,18 +4,18 @@ CXXFLAGS := -std=c++17
 
 all: 2d 3d
 
-2d: physics_sim.exe
-physics_sim.exe: main.cpp vector2D.hpp Physics.hpp initialValues.hpp
-	g++ main.cpp vector2D.hpp Physics.hpp initialValues.hpp -o physics_sim.exe \
+2d: 2ds.exe
+2ds.exe: main.cpp vector2D.hpp Physics.hpp initialValues.hpp
+	g++ main.cpp vector2D.hpp Physics.hpp initialValues.hpp -o 2ds.exe \
 		-I$(SFML_HOME)/include \
 		-L$(SFML_HOME)/lib \
 		-lsfml-graphics -lsfml-window -lsfml-system
 
 	cp $(SFML_HOME)/bin/*.dll .
 
-3d: extra_dimension.exe
-extra_dimension.exe: main3d.cpp
-	g++ main3d.cpp -o extra_dimension.exe \
+3d: 3ds.exe
+3ds.exe: main3d.cpp vector3D.hpp initialValues3D.hpp immediateC.hpp Physics3D.hpp
+	g++ main3d.cpp vector3D.hpp initialValues3D.hpp immediateC.hpp Physics3D.hpp -o 3ds.exe \
 		-I$(SFML_HOME)/include \
 		-L$(SFML_HOME)/lib \
 		$(CXXFLAGS) \
