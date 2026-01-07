@@ -64,15 +64,15 @@ double speedMultiplier = 1000.0;
     //this passes in a vector but the converter in vector2D returns as a vector2f type when it sees this
     // ALL shapes need radius offset
     //replace 20 with Ball.radius incase updates are done.
-    Sun.setPosition(sun.pos - Vector(sun.radius, sun.radius));
-    Mercury.setPosition(mercury.pos - Vector(mercury.radius, mercury.radius));
-    Venus.setPosition(venus.pos - Vector(venus.radius, venus.radius));
-    Earth.setPosition(earth.pos - Vector(earth.radius, earth.radius));
-    Mars.setPosition(mars.pos - Vector(mars.radius, mars.radius));
-    Jupiter.setPosition(jupiter.pos - Vector(jupiter.radius, jupiter.radius));
-    Saturn.setPosition(saturn.pos - Vector(saturn.radius, saturn.radius));
-    Uranus.setPosition(uranus.pos - Vector(uranus.radius, uranus.radius));
-    Neptune.setPosition(neptune.pos - Vector(neptune.radius, neptune.radius));
+    Sun.setPosition(sf::Vector2f(sun.pos - Vector(sun.radius, sun.radius)));
+    Mercury.setPosition(sf::Vector2f(mercury.pos - Vector(mercury.radius, mercury.radius)));
+    Venus.setPosition(sf::Vector2f(venus.pos - Vector(venus.radius, venus.radius)));
+    Earth.setPosition(sf::Vector2f(earth.pos - Vector(earth.radius, earth.radius)));
+    Mars.setPosition(sf::Vector2f(mars.pos - Vector(mars.radius, mars.radius)));
+    Jupiter.setPosition(sf::Vector2f(jupiter.pos - Vector(jupiter.radius, jupiter.radius)));
+    Saturn.setPosition(sf::Vector2f(saturn.pos - Vector(saturn.radius, saturn.radius)));
+    Uranus.setPosition(sf::Vector2f(uranus.pos - Vector(uranus.radius, uranus.radius)));
+    Neptune.setPosition(sf::Vector2f(neptune.pos - Vector(neptune.radius, neptune.radius)));
     
     window.clear(sf::Color::Black);
     window.draw(Sun);

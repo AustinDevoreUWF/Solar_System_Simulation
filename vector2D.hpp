@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
-using namespace std;
 //i need to create vectors that track direction and magnitude
 struct Vector{
     double x=0.0;
@@ -37,11 +36,9 @@ struct Vector{
     }
 //To find the magnitude we need to get the value and make it positive if its negative
 double mag()const{
-    return sqrt(x*x +y*y);//gets the abs val
+    return std::sqrt(x*x +y*y);//gets the abs val
 };
-void printV(){
-    cout << "("<<x<<','<<y<<')'<< endl;
-    };
+
 //anyVector.norm =  
     Vector norm() const{
         double magnitude = mag();

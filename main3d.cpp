@@ -6,6 +6,8 @@
 #include "immediateC.hpp"
 #include "initialValues3d.hpp"
 #include "Physics3D.hpp"
+
+Starfield backgroundStars(500);
 int main() {
     sf::Window window(sf::VideoMode({800, 600}),
     "3D Circle Example",
@@ -19,13 +21,13 @@ int main() {
     window.setMouseCursorGrabbed(true);
 
     glEnable(GL_DEPTH_TEST);
-    glClearColor(0.f, 0.f, 0.15f, 1.f);
+    glClearColor(0.f, 0.f, 0.0f, 1.f);
 
     // projection setup
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     float aspect = 800.f / 600.f;
-    glFrustum(-aspect, aspect, -1.0, 1.0, 1.0, 100.0);
+    glFrustum(-aspect, aspect, -1.0, 1.0, 1.0, 10000.0);
     glMatrixMode(GL_MODELVIEW);
 
     //Camera Settup
@@ -45,17 +47,27 @@ int main() {
         physics.addBall(p->solarBody);
     }
 
+int speedMultiplier=100;
 while (window.isOpen()) {
     while (const std::optional event = window.pollEvent()) {
         if (event->is<sf::Event::Closed>()) {
             window.close();
-        }if(event->is<sf::Event::KeyPressed>()){
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)){
+        }
+        
+        // Handle single key-press events here
+        if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+            if (keyPressed->code == sf::Keyboard::Key::Escape) {
                 window.close();
+            }
+            if (keyPressed->code == sf::Keyboard::Key::Up) {
+                speedMultiplier += 500; // Only happens ONCE per click
+            }
+            if (keyPressed->code == sf::Keyboard::Key::Down) {
+                speedMultiplier -= 500;
+                if (speedMultiplier < 0) speedMultiplier = 0;
             }
         }
     }
- double speedMultiplier = 1000;
         double dt = clock.restart().asSeconds();
         int subSteps =10;
         for(int i=0;i<subSteps;i++){
@@ -106,16 +118,16 @@ while (window.isOpen()) {
             camY -= moveSpeed;  // Move down
         }        
 
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
 
         glRotatef(camPitch*180.0f/PI,1.0f,0.0f,0.0f);
         glRotatef(camYaw*180.0f/PI,0.0f,1.0f,0.0f);
+        backgroundStars.drawStars();
         glTranslatef(-camX,-camY,-camZ);
         //applys the camera position
 
-//make an object that takes, color/size/mass/initVel/location  
+//actual draw
         for(Planet* p:solarSystem){
             p->draw(Sun.solarBody->pos);
         }

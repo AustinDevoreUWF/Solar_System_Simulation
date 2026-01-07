@@ -1,17 +1,18 @@
 #include <cmath>
 #include "vector2D.hpp"
 #include <vector>
+#include <cstddef>
 class Physics{
     private://standered gravitational constant 6.674e-11
             //5e-8 gave close
         double time=0.0;
         Vector v;
-        vector<Ball*> ball;//incase many balls
+        std::vector<Ball*> balls;//incase many balls
     public:
         const double G = 5e-8;
 
         void addBall(Ball *b){
-            ball.push_back(b);
+            balls.push_back(b);
         }
 
         Vector forceG(Ball *a, Ball *b){
@@ -24,14 +25,14 @@ class Physics{
 
 
     void step(double dt){
-            for(auto b:ball){
+            for(auto b:balls){
                 b->force = Vector(0,0);
             }
             //iterate through all ball relationships and update the forces
-            for(size_t i=0;i<ball.size();i++){
-            for(size_t j=i+1;j<ball.size();j++){
-                Ball* ballA=ball[i];
-                Ball* ballB=ball[j];
+            for(std::size_t i=0;i<balls.size();i++){
+            for(std::size_t j=i+1;j<balls.size();j++){
+                Ball* ballA=balls[i];
+                Ball* ballB=balls[j];
 
                 Vector f =forceG(ballA,ballB);
                 ballA->force+=f;//updates the balls force due to gravity toward 
@@ -39,8 +40,8 @@ class Physics{
             }
         }
         //we know mass and force, then find a=f/m
-            for(size_t i=0;i<ball.size();i++){
-                Ball *b =ball[i];
+            for(std::size_t i=0;i<balls.size();i++){
+                Ball *b =balls[i];
                 Vector acceleration = b->force /b->mass;
                 b->vel +=acceleration*dt;
                 b->pos +=b->vel *dt;

@@ -10,8 +10,8 @@ all: 2d 3d
 		-I$(SFML_HOME)/include \
 		-L$(SFML_HOME)/lib \
 		-lsfml-graphics -lsfml-window -lsfml-system
-
-	cp $(SFML_HOME)/bin/*.dll .
+	-cp $(SFML_HOME)/bin/*.dll .
+	-cp $(SFML_HOME)/lib/*.dll .
 
 3d: 3ds.exe
 3ds.exe: main3d.cpp vector3D.hpp initialValues3D.hpp immediateC.hpp Physics3D.hpp
