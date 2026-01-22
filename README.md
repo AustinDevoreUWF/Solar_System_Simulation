@@ -1,5 +1,5 @@
 # Solar System Physics Simulation
-![](https://github.com/AustinDevoreUWF/Physics_Sim/blob/main/SolarSystemGIF.gif)
+![](https://github.com/AustinDevoreUWF/Physics_Sim/blob/main/SolarSystemGIF)
 
 Language: C++
 
