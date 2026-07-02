@@ -12,3 +12,8 @@ Custom N-Body Physics Engine: Implemented Newtonian Mechanics using Euler Integr
 Floating Point Precision: Optimized calculations to prevent "orbital drift" during long-duration simulations.Performance: Managed the rendering loop to maintain a stable 60 FPS even with multiple concurrent gravitational actors.
 
 **From Theory to Implementation:** Translated theoretical physics notes and Newtonian equations directly into C++ logic. By deriving the mechanics manually rather than using pre-existing libraries or generative tools, I ensured 100% architectural transparency and a deep understanding of the simulation's mathematical foundation
+
+## Build
+ ``` $ g++ main3d.cpp -o 3ds.exe -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 ```
+## Execute
+``` ./3ds.exe ```
